@@ -2,12 +2,15 @@ if(localStorage.getItem('token') == undefined || localStorage.getItem('token') =
     window.location.href = "../login/login.html";
 }
 
+let newNews= document.getElementById('newNews')
+let spanVald=document.getElementById('spanVald')
 function logout() {
     localStorage.removeItem('token')
     window.location.href = '../login/login.html'
 }
 
-let URL = 'https://complaint-campz.herokuapp.com/'
+// let URL = 'https://complaint-campz.herokuapp.com/'
+let URL = 'http://localhost:3000/'
 
 let header = new Headers();
 header.append('content-type', 'application/json');
@@ -25,7 +28,13 @@ function send_news() {
         return re.json();
     }).then(data => {
         console.log(data)
+        if(data.status == 200) {
+            spanVald.innerHTML='حموزتي';
+            newNews.value=''
+        }
     })
+    
+
 }
 
 
